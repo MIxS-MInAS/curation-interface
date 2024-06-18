@@ -182,3 +182,6 @@ table td {
     outline: none;
 }
 
+table.dataTable th:first-child {
+    visibility: hidden;
+}
