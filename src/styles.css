@@ -167,3 +167,17 @@ table td {
     max-height: 90vh;
     overflow: auto;
 }
+
+.bubble-editor {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    z-index: 1000;
+    width: 300px;
+    max-width: 100%;
+    min-height: 50px;
+    overflow: auto;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    outline: none;
+}

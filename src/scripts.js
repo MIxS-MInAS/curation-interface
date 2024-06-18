@@ -780,14 +780,14 @@ $(document).ready(function () {
         }
     });
 
-    function showModal(message) {
-        $('#errorModalMessage').text(message);
-        $('#errorModal').modal('show');
-    }
-
     function validateEmail(email) {
         const re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
         return re.test(String(email).toLowerCase());
+    }
+
+    function showModal(message) {
+        $('#errorModalMessage').text(message);
+        $('#errorModal').modal('show');
     }
 
     // Back to top button functionality
@@ -822,6 +822,91 @@ $(document).ready(function () {
         const row = $(this).closest('tr');
         row.toggleClass('selected', $(this).is(':checked'));
     });
+    let currentCell = null;
+
+    // Show bubble editor on cell click
+    $('body').on('click', 'td[contenteditable="true"]', function () {
+        const $cell = $(this);
+        currentCell = $cell;
+
+        const originalText = $cell.text();
+        const bubble = $('<div contenteditable="true" class="bubble-editor">' + originalText + '</div>');
+        $('body').append(bubble);
+        bubble.css({
+            top: $cell.offset().top,
+            left: $cell.offset().left,
+            width: '300px'
+        }).focus();
+
+        bubble.on('focusout', function () {
+            const newValue = bubble.text();
+            const originalValue = $cell.attr('data-original-value');
+
+            if (!originalValue) {
+                $cell.attr('data-original-value', originalText);
+            }
+
+            $cell.text(newValue);
+            bubble.remove();
+
+            const uniqueId = $cell.closest('tr').attr('data-unique-id');
+            const cellIndex = $cell.index();
+            const colName = columnOrder[cellIndex - 1];
+
+            if (!uniqueId) {
+                console.error('No uniqueId found for row');
+                return;
+            }
+
+            if (!modifiedData[uniqueId]) {
+                modifiedData[uniqueId] = {};
+                columnOrder.forEach(function (col) {
+                    const originalValue = $cell.closest('tr').find(`td:eq(${columnOrder.indexOf(col) + 1})`).attr('data-original-value') || '';
+                    modifiedData[uniqueId][col] = {
+                        original: originalValue,
+                        modified: originalValue
+                    };
+                });
+            }
+
+            if (modifiedData[uniqueId][colName].original !== newValue) {
+                modifiedData[uniqueId][colName].modified = newValue;
+            } else {
+                modifiedData[uniqueId][colName].modified = '';
+            }
+
+            if (modifiedData[uniqueId][colName].original !== newValue) {
+                $cell.addClass('modified-cell');
+                $cell.closest('tr').addClass('modified-row');
+            } else {
+                $cell.removeClass('modified-cell');
+                if ($cell.closest('tr').find('.modified-cell').length === 0) {
+                    $cell.closest('tr').removeClass('modified-row');
+                }
+            }
+
+            // Assuming dataTable is available in the scope
+            const activeTableId = $cell.closest('table').attr('id');
+            console.log(activeTableId);
+
+            const dataTable = $(`#${activeTableId}`).DataTable(); // Adjust selector as per your table's id
+            console.log(dataTable);
+            const cellIndexDataTable = dataTable.cell($cell).index();
+
+            if (cellIndexDataTable !== undefined) {
+                dataTable.cell(cellIndexDataTable).data(newValue).draw(false);
+
+                $cell.addClass('highlighted-cell');
+                setTimeout(() => {
+                    $cell[0].scrollIntoView({ behavior: "smooth", block: "center" });
+                    setTimeout(() => $cell.removeClass('highlighted-cell'), 2000);
+                }, 0);
+            } else {
+                console.error('Failed to get the DataTable cell index for', $cell);
+            }
+        });
+    });
+
 
     // Function to update cell value
     function updateCellValue($cell, newValue, uniqueId, colName) {
@@ -853,4 +938,5 @@ $(document).ready(function () {
             modifiedData[uniqueId][colName].modified = '';
         }
     }
+
 });

@@ -165,6 +165,25 @@
                 </div>
             </div>
         </div>
+        <!-- Modal for editing cell text -->
+        <div class="modal fade" id="editCellModal" tabindex="-1" role="dialog" aria-labelledby="editCellModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editCellModalLabel">Edit Text</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <textarea id="editCellTextarea" class="form-control"></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="saveEditCell">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <!-- Back to Top Button -->
     <button id="back-to-top"><i class="fas fa-chevron-up"></i></button>
