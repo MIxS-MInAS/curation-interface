@@ -1,0 +1,169 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 10px;
+    background-color: #f8f9fa;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.header {
+    background-color: #007bff;
+    color: white;
+}
+
+.tooltip-inner {
+    max-width: 350px;
+    padding: .25rem .5rem;
+    color: #fff;
+    text-align: center;
+    background-color: #333;
+    border-radius: .25rem;
+}
+
+#loadingMessage {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(255, 255, 255, 0.8);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    text-align: center;
+}
+
+#loadingMessage > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.modified-row {
+    background-color: #ffffcc !important;
+}
+
+.modified-cell {
+    color: red !important;
+}
+
+.highlighted-cell {
+    background-color: #ffe6e6 !important;
+}
+
+.additional-fields {
+    margin-bottom: 20px;
+}
+
+.additional-fields .field-group {
+    display: flex;
+    align-items: center;
+}
+
+.additional-fields .field-group input {
+    margin-right: 10px;
+    margin-bottom: 5px;
+}
+
+.additional-fields .field-group .remove-field {
+    cursor: pointer;
+    color: white;
+}
+
+.session-group {
+    margin-bottom: 20px;
+}
+
+.invalid-email {
+    border-color: red;
+}
+
+.input-field {
+    min-width: 300px;
+}
+
+#content-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+#main-content {
+    flex: 1;
+    overflow: auto;
+}
+
+/* Back to top button */
+#back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: none;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    z-index: 1000;
+}
+
+#back-to-top:hover {
+    background-color: #0056b3;
+}
+
+/* Add word wrap to table cells */
+table th {
+    white-space: nowrap;
+}
+
+table td {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+}
+
+.dataTables_wrapper .dataTables_filter {
+    float: right;
+    text-align: right;
+    visibility: hidden;
+}
+
+.dataTables_wrapper .dataTables_filter input {
+    margin-left: 0.5em;
+}
+
+.dataTables_wrapper .dataTables_info {
+    float: left;
+}
+
+.dataTables_wrapper .dataTables_paginate {
+    float: right;
+    text-align: right;
+}
+
+.dataTables_wrapper .dataTables_length {
+    float: left;
+}
+
+.select-checkbox {
+    width: 3px;
+}
+
+.modal-body .form-group textarea {
+    width: 100%;
+    resize: vertical;
+}
+
+.modal-dialog {
+    max-width: 80%;
+}
+
+.modal-content {
+    max-height: 90vh;
+    overflow: auto;
+}
