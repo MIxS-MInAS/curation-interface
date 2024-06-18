@@ -68,6 +68,8 @@
                     <button id="delete-row" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Remove term</button>
                     <!-- Save Table Button -->
                     <button id="save-table" class="btn btn-info"><i class="fas fa-save"></i> Save Table</button>
+                    <button id="help" class="btn btn-outline-secondary" data-bs-toggle="modal"
+                        data-bs-target="#helpModal"><i class="fa-solid fa-circle-info"></i> Help</button>
                 </div>
                 <ul class="nav nav-tabs" id="tableTabs" role="tablist"></ul>
                 <div class="tab-content" id="tableTabsContent"></div>
@@ -185,6 +187,122 @@
             </div>
         </div>
     </div>
+    <!-- Help Button -->
+
+    <!-- Help Modal -->
+    <div class="modal fade" id="helpModal" tabindex="-1" role="dialog" aria-labelledby="helpModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="helpModalLabel">Help & Tutorial</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h6>Overview</h6>
+                    <p>This application allows you to manage and edit data tables efficiently. Here's a detailed guide
+                        on
+                        how to use all the features:</p>
+
+                    <h6>Step-by-Step Guide</h6>
+                    <ul>
+                        <li><strong>Loading Data:</strong>
+                            <ul>
+                                <li>Click on "MimsHostAssociated + Ancient" to load the MIMS Host Associated and Ancient
+                                    data set.</li>
+                                <li>Click on "SedimentMIMS + Ancient" to load the Sediment MIMS and Ancient data set.
+                                </li>
+                            </ul>
+                        </li>
+                        <li><strong>Viewing Data:</strong>
+                            <ul>
+                                <li>After loading a dataset, the table will be displayed. You can navigate through
+                                    different
+                                    tabs for different packages within the dataset.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Editing Data:</strong>
+                            <ul>
+                                <li>Click on any editable cell (usually "Comments" or all cells in Development mode) to
+                                    edit
+                                    its content. Changes are saved automatically.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Adding Rows:</strong>
+                            <ul>
+                                <li>Click the "Add term" button to open a form where you can enter details for a new
+                                    row.
+                                    Fill in the fields and click "Save" to add the row to the table.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Deleting Rows:</strong>
+                            <ul>
+                                <li>Select the rows you want to delete using the checkboxes on the left side of each
+                                    row.
+                                    Click "Remove term" to delete the selected rows.</li>
+                                <li>Confirm the deletion in the modal that appears.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Viewing Row Details:</strong>
+                            <ul>
+                                <li>Select a single row and click "View term" to see a detailed view of that row's data
+                                    in a
+                                    modal.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Editing Row Details:</strong>
+                            <ul>
+                                <li>Select a single row and click "Edit term" to open a modal where you can edit all
+                                    fields
+                                    of the selected row.</li>
+                                <li>Make changes and click "Save" to update the row.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Feedback Mode vs Development Mode:</strong>
+                            <ul>
+                                <li>Toggle the switch between Feedback and Development mode. In Feedback mode, only the
+                                    "Comments" column is editable. In Development mode, all cells are editable.</li>
+                                <li>The session name will be prefixed with "MINAS-FS-" for Feedback sessions and
+                                    "MINAS-DEV-" for Development sessions.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Session Information:</strong>
+                            <ul>
+                                <li>Enter a session name in the "Session name" field. The prefix will be automatically
+                                    added
+                                    based on the selected mode.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Additional Information:</strong>
+                            <ul>
+                                <li>Add additional names and emails using the fields in the "Additional Information"
+                                    section. Click the "+" button to add more fields and the "-" button to remove them.
+                                </li>
+                            </ul>
+                        </li>
+                        <li><strong>Saving the Table:</strong>
+                            <ul>
+                                <li>Click "Save Table" to save your modifications. The table will be saved as a JSON
+                                    file,
+                                    including all edited and newly added rows, along with the session and additional
+                                    information.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Back to Top:</strong>
+                            <ul>
+                                <li>Use the "Back to Top" button at the bottom-right corner of the screen to quickly
+                                    scroll
+                                    back to the top of the page.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Back to Top Button -->
     <button id="back-to-top"><i class="fas fa-chevron-up"></i></button>
     <!-- jQuery -->
@@ -196,6 +314,9 @@
         src="https://cdn.datatables.net/v/dt/jq-3.7.0/dt-2.0.8/af-2.7.0/b-3.0.2/b-colvis-3.0.2/cr-2.0.3/fc-5.0.1/fh-4.0.1/r-3.0.2/rg-1.5.0/sc-2.4.3/sb-1.7.1/sp-2.3.1/datatables.min.js"></script>
     <!-- FileSaver.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+
     <!-- Custom JS -->
     <script src="scripts.js"></script>
 </body>
